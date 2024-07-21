@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  db:
+    image: "postgres:latest"
+    container_name: "pizza-forge-db"
+    restart: always
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: qwe123
+      POSTGRES_DB: pizzaforge
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    container_name: "pizza-forge-app"
+    environment:
+      DB_USERNAME: myuser
+      DB_PASSWORD: qwe123
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+
+volumes:
+  pg-data:
+    driver: local

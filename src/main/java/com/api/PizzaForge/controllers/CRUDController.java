@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/pizza")
+@RequestMapping("/api")
 public class CRUDController {
 
     @GetMapping

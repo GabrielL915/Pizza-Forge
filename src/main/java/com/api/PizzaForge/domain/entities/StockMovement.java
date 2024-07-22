@@ -1,8 +1,11 @@
 package com.api.PizzaForge.domain.entities;
 
 
+import com.api.PizzaForge.shared.enums.TypeMovement;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,8 +39,9 @@ public class StockMovement {
     @Column(name = "timestamp", nullable = false)
     private LocalDateTime timestamp;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
-    private String type;
+    private TypeMovement type;
 
     @Column(name = "details", nullable = false)
     private String details;

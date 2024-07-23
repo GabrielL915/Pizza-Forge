@@ -6,8 +6,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class PizzaForgeApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void server() {
+        PizzaForgeApplication.main(new String[]{});
+    }
 
 }

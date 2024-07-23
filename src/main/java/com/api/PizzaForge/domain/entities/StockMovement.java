@@ -46,7 +46,7 @@ public class StockMovement {
     @Column(name = "details", nullable = false)
     private String details;
 
-    @ManyToOne
-    @JoinColumn(name = "ingredient_id")
-    private Ingredient ingredient;
+//    @ManyToOne
+//    @JoinColumn(name = "ingredient_id")
+//    private Ingredient ingredient;
 }

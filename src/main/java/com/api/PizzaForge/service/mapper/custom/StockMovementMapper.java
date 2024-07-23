@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
-public class StockMoventMapper implements PizzaForgeMapper<StockMovement, StockMovementDTO> {
-
-    private final IngredientMapper ingredientMapper;
+public class StockMovementMapper implements PizzaForgeMapper<StockMovement, StockMovementDTO> {
 
     @Override
     public StockMovementDTO toDTO(StockMovement stockMovement) {
@@ -20,7 +17,6 @@ public class StockMoventMapper implements PizzaForgeMapper<StockMovement, StockM
                 .timestamp(stockMovement.getTimestamp())
                 .type(stockMovement.getType())
                 .details(stockMovement.getDetails())
-                .ingredientDTO(ingredientMapper.toDTO(stockMovement.getIngredient()))
                 .build();
     }
 
@@ -31,7 +27,6 @@ public class StockMoventMapper implements PizzaForgeMapper<StockMovement, StockM
                 .timestamp(stockMovementDTO.getTimestamp())
                 .type(stockMovementDTO.getType())
                 .details(stockMovementDTO.getDetails())
-                .ingredient(ingredientMapper.toEntity(stockMovementDTO.getIngredientDTO()))
                 .build();
     }
 }

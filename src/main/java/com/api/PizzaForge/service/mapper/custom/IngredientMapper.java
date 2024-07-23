@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class IngredientMapper implements PizzaForgeMapper<Ingredient, IngredientDTO> {
 
-    private final StockMoventMapper stockMoventMapper;
+    private final StockMovementMapper stockMoventMapper;
 
     @Override
     public IngredientDTO toDTO(Ingredient ingredient) {

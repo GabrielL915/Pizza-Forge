@@ -38,5 +38,5 @@ public class StockMovementDTO {
     @NotBlank(message = "The field 'details' cannot be null")
     private String details;
 
-    private IngredientDTO ingredientDTO;
+//    private IngredientDTO ingredientDTO;
 }

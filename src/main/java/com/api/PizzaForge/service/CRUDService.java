@@ -1,6 +1,7 @@
 package com.api.PizzaForge.service;
 
 import com.api.PizzaForge.domain.repository.CRUDRepository;
+import com.api.PizzaForge.service.exception.EntityNotFoundException;
 import com.api.PizzaForge.service.mapper.PizzaForgeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,7 @@ public abstract class CRUDService<Entity, ID, DTO> {
     }
 
     private Entity findByIdOrElseThrowException(ID id) {
-        return crudRepository.findById(id).orElseThrow();
+        return crudRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
     }
 
     protected abstract void updateData(Entity entity, DTO dto);

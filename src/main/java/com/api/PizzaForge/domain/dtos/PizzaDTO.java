@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Builder
 @Getter
 @Setter
@@ -26,5 +28,5 @@ public class PizzaDTO {
     @NotNull(message = "The field 'price' cannot be blank")
     private Double price;
 
-    private IngredientDTO ingredientDTO;
+    private List<IngredientDTO> ingredientDTO;
 }

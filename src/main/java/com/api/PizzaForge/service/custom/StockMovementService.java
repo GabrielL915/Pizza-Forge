@@ -50,13 +50,6 @@ public class StockMovementService extends CRUDService<StockMovement, Long, Stock
         stockMovement.setQuantity(stockMovementDTO.getQuantity());
     }
 
-    private void updateIngredientStock(Ingredient ingredient, double quantity, TypeMovement type) {
-        double newStock = ingredient.getCurrentStock() +
-                (type == TypeMovement.IN ? quantity : -quantity);
-
-        ingredientService.updateStock(ingredient.getId(), newStock);
-    }
-
     public List<StockMovementDTO> getRecentMovements(int limit) {
         Pageable pageable = PageRequest.of(0, limit);
         return stockMovementRepository.findTopByOrderByTimestampDesc(pageable)

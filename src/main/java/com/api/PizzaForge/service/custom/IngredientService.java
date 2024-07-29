@@ -2,8 +2,10 @@ package com.api.PizzaForge.service.custom;
 
 import com.api.PizzaForge.domain.dtos.IngredientDTO;
 import com.api.PizzaForge.domain.entities.Ingredient;
+import com.api.PizzaForge.domain.repository.custom.IngredientRepository;
 import com.api.PizzaForge.service.CRUDService;
 import com.api.PizzaForge.service.mapper.custom.IngredientMapper;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,9 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class IngredientService extends CRUDService<Ingredient, Long, IngredientDTO> {
+
+    @Autowired
+    private IngredientRepository ingredientRepository;
 
     @Autowired
     private IngredientMapper ingredientMapper;
@@ -25,17 +30,18 @@ public class IngredientService extends CRUDService<Ingredient, Long, IngredientD
         ingredient.setStockMovement(ingredientMapper.toEntityList(ingredientDTO.getStockMovementDTO()));
     }
 
-    public void updateStock(Long id, double newStock) {
+    @Override
+    @Transactional
+    public IngredientDTO update(Long id, IngredientDTO ingredientDTO) {
         Ingredient ingredient = findByIdOrElseThrowException(id);
-        ingredient.setCurrentStock(newStock);
-//        save(ingredient);
-
-        checkLowStock(ingredient);
+        updateData(ingredient, ingredientDTO);
+        Ingredient updatedIngredient = ingredientRepository.save(ingredient);
+        checkLowStock(updatedIngredient);
+        return ingredientMapper.toDTO(updatedIngredient);
     }
 
     private void checkLowStock(Ingredient ingredient) {
         if (ingredient.getCurrentStock() < ingredient.getMinimumStock()) {
-//            emailService.sendLowStockAlert(ingredient);
             System.out.println("Alert");
         }
     }

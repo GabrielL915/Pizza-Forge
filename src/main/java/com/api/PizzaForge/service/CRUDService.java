@@ -43,7 +43,7 @@ public abstract class CRUDService<Entity, ID, DTO> {
         crudRepository.delete(findByIdOrElseThrowException(id));
     }
 
-    private Entity findByIdOrElseThrowException(ID id) {
+    protected Entity findByIdOrElseThrowException(ID id) {
         return crudRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
     }
 

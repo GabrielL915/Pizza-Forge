@@ -28,8 +28,8 @@ public class StockMovementDTO {
     @PositiveOrZero(message = "The field 'quantity' must be 0 or positive")
     private Double quantity;
 
-    @NotNull(message = "The field 'timestamp' cannot be null")
-    @PastOrPresent(message = "The field 'timestamp' must be in the past or present")
+//    @NotNull(message = "The field 'timestamp' cannot be null")
+//    @PastOrPresent(message = "The field 'timestamp' must be in the past or present")
     private LocalDateTime timestamp;
 
     @NotNull(message = "The field 'type' cannot be null")
@@ -37,6 +37,4 @@ public class StockMovementDTO {
 
     @NotBlank(message = "The field 'details' cannot be null")
     private String details;
-
-//    private IngredientDTO ingredientDTO;
 }

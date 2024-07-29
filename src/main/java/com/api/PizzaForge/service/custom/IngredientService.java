@@ -24,4 +24,19 @@ public class IngredientService extends CRUDService<Ingredient, Long, IngredientD
         ingredient.setCostPerUnit(ingredient.getCostPerUnit());
         ingredient.setStockMovement(ingredientMapper.toEntityList(ingredientDTO.getStockMovementDTO()));
     }
+
+    public void updateStock(Long id, double newStock) {
+        Ingredient ingredient = findByIdOrElseThrowException(id);
+        ingredient.setCurrentStock(newStock);
+//        save(ingredient);
+
+        checkLowStock(ingredient);
+    }
+
+    private void checkLowStock(Ingredient ingredient) {
+        if (ingredient.getCurrentStock() < ingredient.getMinimumStock()) {
+//            emailService.sendLowStockAlert(ingredient);
+            System.out.println("Alert");
+        }
+    }
 }

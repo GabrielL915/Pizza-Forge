@@ -1,9 +1,9 @@
 package com.api.PizzaForge.domain.repository.custom;
 
 import com.api.PizzaForge.domain.entities.Ingredient;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.api.PizzaForge.domain.repository.CRUDRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
+public interface IngredientRepository extends CRUDRepository<Ingredient, Long> {
 }

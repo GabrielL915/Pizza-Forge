@@ -1,5 +1,6 @@
 package com.api.PizzaForge.domain.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class Pizza {
     @Column(name = "price", nullable = false)
     private Double price;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "pizza_ingredient",
             joinColumns = @JoinColumn(name = "pizza_id"),

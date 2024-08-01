@@ -33,19 +33,6 @@ public class Ingredient {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "current_stock", nullable = false)
-    private Double currentStock;
-
-    @Column(name = "minimum_stock", nullable = false)
-    private Double minimumStock;
-
-    @Column(name = "unit", nullable = false)
-    private String unit;
-
-    @Column(name = "cost_per_unit", nullable = false)
-    private Double costPerUnit;
-
-    @OneToMany
-    @JoinColumn(name = "stock_movement_id")
-    private List<StockMovement> stockMovement;
+    @Column(name = "price", nullable = false)
+    private Double price;
 }

@@ -7,6 +7,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StockService extends CRUDService<Stock, Long, StockDTO> {
+
+    @Override
+    protected void checkBeforeSave(Stock stock, StockDTO stockDTO) {
+
+    }
+
     @Override
     protected void updateData(Stock stock, StockDTO stockDTO) {
 

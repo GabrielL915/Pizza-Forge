@@ -19,6 +19,7 @@ public abstract class CRUDService<Entity, ID, DTO> {
 
     public DTO create(DTO dto) {
         Entity newEntity = pizzaForgeMapper.toEntity(dto);
+        checkBeforeSave(newEntity, dto);
         return pizzaForgeMapper.toDTO(crudRepository.save(newEntity));
     }
 
@@ -43,9 +44,11 @@ public abstract class CRUDService<Entity, ID, DTO> {
         crudRepository.delete(findByIdOrElseThrowException(id));
     }
 
-    protected Entity findByIdOrElseThrowException(ID id) {
+    private Entity findByIdOrElseThrowException(ID id) {
         return crudRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id));
     }
+
+    protected abstract void checkBeforeSave(Entity entity, DTO dto);
 
     protected abstract void updateData(Entity entity, DTO dto);
 }

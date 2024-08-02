@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 public class TransactionsService extends CRUDService<Transactions, Long, TransactionsDTO> {
 
     @Override
+    protected void checkBeforeSave(Transactions transactions, TransactionsDTO transactionsDTO) {
+
+    }
+
+    @Override
     protected void updateData(Transactions transactions, TransactionsDTO transactionsDTO) {
         transactions.setDetails(transactionsDTO.getDetails());
         transactions.setType(transactionsDTO.getType());

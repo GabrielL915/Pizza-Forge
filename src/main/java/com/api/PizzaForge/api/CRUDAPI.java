@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,5 +32,11 @@ public abstract class CRUDAPI<Entity, ID, DTO> {
     public ResponseEntity<List<DTO>> findAll() {
         var list = crudService.findAll();
         return ResponseEntity.ok(list);
+    }
+
+    @PutMapping(ID_PATH_VARIABLE)
+    public ResponseEntity<DTO> update(@PathVariable ID id, @RequestBody @Valid DTO dto) {
+        var object = crudService.update(id, dto);
+        return ResponseEntity.ok(object);
     }
 }
